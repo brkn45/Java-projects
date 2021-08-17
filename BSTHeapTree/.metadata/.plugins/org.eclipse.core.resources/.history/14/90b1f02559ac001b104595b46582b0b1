@@ -1,0 +1,186 @@
+package hybrit;
+
+import hybrit.BSTHeapTree.Node;
+
+public class BSTHeapTree {
+	Node root;
+	class Node {
+	    bstHeap heap =new bstHeap(7);
+	    Node left;
+	    Node right;
+	    int count;
+	    Node(int value) {
+	        //this.heap.insert(value); 
+	        right = null;
+	        left = null;
+	    }
+	}
+	
+	private Node addRecursive(Node current, int value) {
+		
+		if (current == null) {
+			Node tmp= new Node(value);
+			//System.out.println("Burada1");
+			tmp=addRecursive(tmp, value);
+	        return tmp;
+	        
+	    }
+		else if(current.heap.getSize()>=7) {
+			
+			if (value < current.heap.getValue(0)) {
+		        current.left = addRecursive(current.left, value);
+		    } else if (value > current.heap.getValue(0)) {
+		        current.right = addRecursive(current.right, value);
+		    } else {
+		        // value already exists
+		    	if(containsNode( value)) {
+		    		setCount(value,+1,root);
+		    		return current;
+		    	}
+		        return current;
+		    }
+	    	return current;
+		    
+	    }
+	    else {
+	    	//System.out.println("Burada3");
+	    	if(containsNode( value)) {
+	    		setCount(value,+1,root);
+	    		return current;
+	    	}
+	    	else {
+	    		current.heap.insert(value);
+		    	return current;
+	    	}
+	    }
+	}
+	public boolean setCount(int value,int num,Node current) {
+		 
+	    if ( current.heap.search(value)) {
+	       current.heap.setCount(value,num);
+	    } 
+	    return value < current.heap.getValue(0)
+	      ? containsNodeRecursive(current.left, value)
+	      : containsNodeRecursive(current.right, value);
+	}
+	public void add(int value) {
+	    root = addRecursive(root, value);
+	}
+	
+	private boolean containsNodeRecursive(Node current, int value) {
+	    if (current == null) {
+	        return false;
+	    } 
+	    if ( current.heap.search(value)) {
+	        return true;
+	    } 
+	    return value < current.heap.getValue(0)
+	      ? containsNodeRecursive(current.left, value)
+	      : containsNodeRecursive(current.right, value);
+	}
+	public boolean containsNode(int value) {
+	    return containsNodeRecursive(root, value);
+	}
+	public int find(int value,Node current) {
+		int tmpIndex;
+		if ( current.heap.search(value)) {
+		       tmpIndex=current.heap.getIndex(value);
+		       return current.heap.getCount(tmpIndex);
+		    }
+		
+	    return value < current.heap.getValue(0)
+	       ? find(value,current.left)
+	       : find(value,current.right);
+	}
+	public int find(int value) {
+		return find(value,root);
+	}
+	private BSTHeapTree createBinaryTree() {
+		BSTHeapTree bt = new BSTHeapTree();
+
+	    bt.add(5);
+	    bt.add(3);
+	    bt.add(17);
+	    bt.add(10);
+	    bt.add(84);
+	    bt.add(19);
+	    bt.add(6);
+	    
+	    bt.add(22);
+	    bt.add(9);
+	    bt.add(6);
+	    bt.add(6);
+	    bt.add(6);
+	    return bt;
+	}
+	
+	
+	
+	
+	private int deleteRecursive(Node current, int value) {
+	    int num;
+		if (current == null) {
+	        return 0;
+	    }
+
+	    if (current.heap.search(value)) {
+	        return current.heap.remove(value);
+	    } 
+	    if (value < current.heap.getValue(0)) {
+	        num = deleteRecursive(current.left, value);
+	        return num;
+	    }
+	    num = deleteRecursive(current.right, value);
+	    return num;
+	}
+	public void traverseInOrder(Node node) {
+	    if (node != null) {
+	        traverseInOrder(node.left);
+	        System.out.println("heap");
+	        node.heap.printAll();
+	        traverseInOrder(node.right);
+	    }
+	}
+	public int remove(int item) {
+		return deleteRecursive(root, item);
+	}
+	Node tmpNode;
+	int CountIndex;
+	public int find_mode () {
+		return tmpNode.heap.getValue(CountIndex);
+	}
+				
+	private void frequency(Node current) {
+		int tmpCount=0;
+		
+		if(current !=null) {
+			frequency(current.left);
+			for(int i=0;i< current.heap.getSize();i++) {
+				if(tmpCount < current.heap.getCount(i)) {
+					tmpNode=current;
+					CountIndex=i;
+				}
+			}
+			frequency(current.right);
+		}
+		
+	}
+	
+	
+	
+	public static void main(String[] arg)
+    {
+        System.out.println("The Min Heap is ");
+        BSTHeapTree tree =new BSTHeapTree();
+        tree=tree.createBinaryTree();
+        tree.traverseInOrder(tree.root);
+        tree.remove(5);
+        System.out.println("remove ");
+        tree.traverseInOrder(tree.root);
+        System.out.println("find: " +tree.find(6));
+        System.out.println("find mode: " +tree.find_mode());
+    }
+    
+	
+	
+}

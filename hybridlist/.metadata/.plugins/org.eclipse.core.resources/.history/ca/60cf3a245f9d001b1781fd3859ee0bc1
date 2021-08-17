@@ -1,0 +1,57 @@
+package hw3;
+
+
+
+public class HybridList <E>{
+	private static int size=0;
+	private static class Node<E>{
+		private MyArrayList<E> data =new MyArrayList();
+		private Node <E> next;
+		
+		private Node(E dataItem) {
+			data.add(dataItem);
+			next=null;
+			size++;
+		}
+		private Node(E dataItem,Node<E> nodeRef) {
+			data.add(dataItem);
+			next=nodeRef;
+			size++;
+		}
+		
+	}
+	private Node<E> head =null;
+	
+	private final int capacity=5;
+	
+	public void add(E item) {
+		if(size==5 || size ==0) {
+		 head = new Node<E>(item,head); 
+		}
+		else {
+			head.data.add(item);
+		}
+	}
+	
+	public E get(int index) {
+		if(index > size) {
+			//throw
+		}
+		int i=0;
+		E returnData;
+		Node <E> temp=head;
+		int count=0;
+		if(index>=capacity) {
+			count=index/5;
+			while(count > i  ) {
+				temp=temp.next;
+				i++;
+			}
+		}
+		
+		
+		return temp.data.get(index%5);
+	}
+	
+	
+}

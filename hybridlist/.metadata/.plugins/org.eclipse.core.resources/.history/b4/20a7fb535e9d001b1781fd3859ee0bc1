@@ -1,0 +1,27 @@
+package hw3;
+
+public class Driver {
+
+	public static void main(String[] args) {
+		MyArrayList list = new MyArrayList();
+		HybridList<int> hybridlist = new HybridList<int>();
+		
+		hybridlist.add(20);
+		
+		
+		
+		
+		/*list.add(10);
+		list.add(20);
+		list.add(30);
+		list.add(1,25);
+		list.remove(2);
+		list.set(0, 1);
+		for(int i=0;i< list.getSize();i++) {
+			System.out.println(list.get(i));
+		}*/
+		
+
+	}
+
+}

@@ -1,0 +1,119 @@
+package hw3;
+
+
+
+public class HybridList <E>{
+	private  int size=0;
+	private final int CAPACITY =5;
+	private static class Node<E>{
+		private MyArrayList<E> data =new MyArrayList();
+		private Node <E> next;
+		
+		private Node(E dataItem) {
+			data.add(dataItem);
+			next=null;
+			
+		}
+		private Node(E dataItem,Node<E> nodeRef) {
+			data.add(dataItem);
+			next=nodeRef;
+			
+		}
+		
+	}
+	private Node<E> head =null;
+	private Node<E> iter=head;
+	
+	
+	private void addFirst(E item) {
+		if(size==0) {
+			iter = new Node<> (item,iter.next);
+			head=iter;
+			size++;
+		}
+		else if(size >= 5 && size%CAPACITY == 0) {
+			iter = new Node<> (item,iter.next);
+			size++;
+		}
+		else {
+			iter.data.add(item);
+			size++;
+		}
+		
+		
+	}
+	public void addAfter(Node<E> node,E item) {
+		if(size%CAPACITY == 0 && size==0) {
+			iter.next = new Node<> (item,node);
+			
+		}
+		else {
+			node.next = new Node<> (item,node);
+		}
+		size++;
+		
+	}
+	private Node<E> getNode(int index){
+		Node<E> node = head;
+		for(int i=0; i <index && node !=null;i++) {
+			node=node.next;
+		}
+		return node;
+	}
+	public void add(int index,E item) {
+		if(index <0 || index > size) {
+			//throw
+		}
+		if(index==0) {
+			addFirst(item);
+		}
+		else if(index >= 5 && index%CAPACITY == 0){
+			Node<E> node =getNode((index/CAPACITY)-1);
+			addAfter(node,item);
+		}
+		else {
+			addFirst(item);
+		}
+		
+	}
+	public boolean add(E item) {
+		add(size,item);
+		return true;
+	}
+	
+	
+	
+	/*public E get(int index) {
+		if(index > size) {
+			//throw
+		}
+		int i=0;
+		E returnData;
+		Node <E> temp=head;
+		int count=0;
+		if(index>=capacity) {
+			count=index/5;
+			while(count > i  ) {
+				temp=temp.next;
+				i++;
+				System.out.println("Okey");
+			}
+		}
+		
+		
+		return temp.data.get(index%5);
+	}*/
+	
+	public void pirntS() {
+		Node <E> temp=head;
+		int i=0;
+		for(i=0;i<size;i++) {
+			System.out.println(temp.data.get(i%5));
+			if(i>=CAPACITY && i%CAPACITY==0) {
+				temp=temp.next;
+			}
+		}
+		
+	}
+	
+}

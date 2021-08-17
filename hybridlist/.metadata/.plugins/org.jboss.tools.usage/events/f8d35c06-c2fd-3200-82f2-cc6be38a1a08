@@ -1,0 +1,11 @@
+#Thu Apr 15 22:50:21 TRT 2021
+ct=jbt
+a=finishWizard
+c=0
+s=1
+d=1618516221817
+v=2.2.203
+vl=How many times the 'Finish' button pressed during the day
+cmp=usage
+cl=org.eclipse.jdt.internal.ui.javadocexport.JavadocWizard
+l=Wizard class name

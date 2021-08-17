@@ -1,0 +1,11 @@
+#Thu Apr 15 22:52:22 TRT 2021
+ct=jbt
+a=finishWizard
+c=0
+s=1
+d=1618516342619
+v=2.2.203
+vl=How many times the 'Finish' button pressed during the day
+cmp=usage
+cl=com.objectaid.uml.cls.editor.NewClassDiagramWizard
+l=Wizard class name

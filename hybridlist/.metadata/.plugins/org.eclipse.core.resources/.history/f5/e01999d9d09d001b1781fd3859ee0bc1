@@ -1,0 +1,39 @@
+package hw3;
+
+public class Driver {
+
+	public static void main(String[] args) {
+		MyArrayList list = new MyArrayList();
+		HybridList hybridlist = new HybridList();
+		hybridlist.add(10);
+		hybridlist.add(20);
+		hybridlist.add(30);
+		hybridlist.add(40);
+		hybridlist.add(50);
+		hybridlist.add(60);
+		hybridlist.add(70);
+		hybridlist.add(80);
+		hybridlist.add(90);
+		System.out.println("başla");
+		hybridlist.pirntS();
+		System.out.println("oke");
+		//System.out.println("num: " + hybridlist.get(8));
+		//System.out.println("before" +hybridlist.set(8,44));
+		//System.out.println("num: " + hybridlist.get(8));
+		//hybridlist.add(0,55);
+		hybridlist.remove(0);
+		hybridlist.pirntS();
+		/*list.add(10);
+		list.add(20);
+		list.add(30);
+		list.add(1,25);
+		list.remove(2);
+		list.set(0, 1);
+		for(int i=0;i< list.getSize();i++) {
+			System.out.println(list.get(i));
+		}*/
+		
+
+	}
+
+}

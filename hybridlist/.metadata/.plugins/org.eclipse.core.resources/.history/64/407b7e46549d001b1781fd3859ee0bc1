@@ -1,0 +1,11 @@
+package hw3;
+
+public class HybridList {
+	MyLinkList linklist =new MyLinkList();
+	MyArrayList arraylist = new MyArrayList();
+	int maxValue=5;
+	
+	public add(int index,E item) {
+		
+	}
+}

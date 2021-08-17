@@ -1,0 +1,13 @@
+package hw3;
+
+public class HybridList <E>{
+	MyLinkList linklist =new MyLinkList();
+	MyArrayList arraylist = new MyArrayList();
+	final int maxValue=5;
+	int size=0;
+	linklist.add(arraylist);
+	public  void add(E item) {
+		
+		linklist.get(0).add(item));
+	}
+}

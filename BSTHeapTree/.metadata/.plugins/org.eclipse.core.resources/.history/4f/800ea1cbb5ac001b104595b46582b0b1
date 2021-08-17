@@ -1,0 +1,42 @@
+package hybrit;
+
+public class Driver {
+
+	public static void main(String[] args) {
+		System.out.println("The Min Heap is ");
+        MinHeap minHeap = new MinHeap(15);
+        MinHeap minHeap2 = new MinHeap(15);
+        minHeap.insert(5);
+        minHeap.insert(3);
+        minHeap.insert(17);
+        minHeap.insert(10);
+        minHeap.insert(84);
+        minHeap.insert(19);
+        minHeap.insert(6);
+        minHeap.insert(22);
+        minHeap.insert(9);
+        minHeap.minHeap();
+        
+      minHeap2.insert(15);
+        minHeap2.insert(25);
+        minHeap2.insert(35);
+        minHeap2.insert(2);
+        minHeap2.insert(55);
+        minHeap2.insert(7);
+        minHeap.minHeap();
+        minHeap.printAll();
+        minHeap.heapMerge(minHeap, minHeap2);
+        System.out.println(minHeap.search(36));
+       minHeap.print();
+       System.out.println("The Min val is " + minHeap.removet());
+        System.out.println("sonra ");
+        minHeap.printAll();
+        System.out.println("iter ");
+
+        while(minHeap.hasNext()) {
+        	System.out.println(minHeap.next());
+        }
+
+	}
+
+}
